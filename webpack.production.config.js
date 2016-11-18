@@ -24,8 +24,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', 
-          'css?modules&importLoaders=1&localIdentName=[local]__[hash:base64:5]!postcss')
+        loader: ExtractTextPlugin.extract('style', 'css!postcss')
       }
     ]
   },
@@ -43,6 +42,9 @@ module.exports = {
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJSPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    }),
     new ExtractTextPlugin('style.css')
   ]
 };

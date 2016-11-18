@@ -8,7 +8,8 @@ module.exports = {
     "globals": {
         "describe": false,
         "it": false,
-        "expect": false
+        "expect": false,
+        "document": false
     },
     "rules": {
     	"no-param-reassign": "off",
