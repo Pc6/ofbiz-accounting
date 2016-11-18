@@ -45,3 +45,6 @@ jspm_packages
 
 # Mac os gitignore
 *.DS_Store
+
+# webpack bulid dir
+static/dist

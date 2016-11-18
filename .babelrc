@@ -1,4 +1,21 @@
 {
-	"presets": ["es2015"],
-	"plugins": ["transform-async-to-generator"]
+	"presets": ["es2015", "react"],
+	"plugins": ["transform-async-to-generator"],
+  "env": {
+    "development": {
+      "plugins": [
+        ["react-transform", {
+          "transforms": [{
+            "transform": "react-transform-hmr",
+            "imports": ["react"],
+            "locals": ["module"]
+          }]
+        }],
+        ["import", {
+          "libraryName": "antd",
+          "style": "css"
+        }]
+      ]
+    }
+  }
 }
