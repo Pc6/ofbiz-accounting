@@ -7,7 +7,7 @@ export function soapCreator(arg) {
     }
   };
   for (const key in arg) {
-    if (arg.hasOwnProperty(key)) {
+    if (Object.hasOwnProperty.call(arg, key)) {
       obj['map-Map']['map-Entry'].push({
         'map-Key': {
           'std-String': {
