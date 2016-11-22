@@ -108,3 +108,29 @@ export async function deleteGlJournal(ctx, next) {
     ctx.throw(err);
   }
 }
+
+export async function findGlJournals(ctx, next) {
+  const url = getWSDL('findGlJournals');
+  const arg = soapCreator(Object.assign(ctx.query, {
+    'login.username': 'admin',
+    'login.password': 'ofbiz'
+  }));
+  try {
+    const client = await soap.createClient(url, {
+      wsdl_options: {
+        rejectUnauthorized: false,
+        requestCert: true,
+        agent: false
+      }
+    });
+    const result = await client.findGlJournals(arg, {
+      rejectUnauthorized: false,
+      requestCert: true,
+      agent: false
+    });
+    ctx.body = soapParser(result, ['glJournals']);
+    await next();
+  } catch (err) {
+    ctx.throw(err);
+  }
+}

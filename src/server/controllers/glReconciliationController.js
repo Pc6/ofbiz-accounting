@@ -108,3 +108,29 @@ export async function deleteGlReconciliation(ctx, next) {
     ctx.throw(err);
   }
 }
+
+export async function findGlReconciliations(ctx, next) {
+  const url = getWSDL('findGlReconciliations');
+  const arg = soapCreator(Object.assign(ctx.query, {
+    'login.username': 'admin',
+    'login.password': 'ofbiz'
+  }));
+  try {
+    const client = await soap.createClient(url, {
+      wsdl_options: {
+        rejectUnauthorized: false,
+        requestCert: true,
+        agent: false
+      }
+    });
+    const result = await client.findGlReconciliations(arg, {
+      rejectUnauthorized: false,
+      requestCert: true,
+      agent: false
+    });
+    ctx.body = soapParser(result, ['glReconciliations']);
+    await next();
+  } catch (err) {
+    ctx.throw(err);
+  }
+}

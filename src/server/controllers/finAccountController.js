@@ -107,3 +107,29 @@ export async function deleteFinAccount(ctx, next) {
     ctx.throw(err);
   }
 }
+
+export async function findFinAccounts(ctx, next) {
+  const url = getWSDL('findFinAccounts');
+  const arg = soapCreator(Object.assign(ctx.query, {
+    'login.username': 'admin',
+    'login.password': 'ofbiz'
+  }));
+  try {
+    const client = await soap.createClient(url, {
+      wsdl_options: {
+        rejectUnauthorized: false,
+        requestCert: true,
+        agent: false
+      }
+    });
+    const result = await client.findFinAccounts(arg, {
+      rejectUnauthorized: false,
+      requestCert: true,
+      agent: false
+    });
+    ctx.body = soapParser(result, ['finAccounts']);
+    await next();
+  } catch (err) {
+    ctx.throw(err);
+  }
+}

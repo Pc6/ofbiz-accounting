@@ -81,3 +81,30 @@ export async function updatePartyGroup(ctx, next) {
     ctx.throw(err);
   }
 }
+
+export async function findPartyGroups(ctx, next) {
+  const url = getWSDL('findPartyGroups');
+  const arg = soapCreator(Object.assign(ctx.query, {
+    'login.username': 'admin',
+    'login.password': 'ofbiz'
+  }));
+  try {
+    const client = await soap.createClient(url, {
+      wsdl_options: {
+        rejectUnauthorized: false,
+        requestCert: true,
+        agent: false
+      }
+    });
+    const result = await client.findPartyGroups(arg, {
+      rejectUnauthorized: false,
+      requestCert: true,
+      agent: false
+    });
+    console.log(result)
+    ctx.body = soapParser(result, ['partyGroups']);
+    await next();
+  } catch (err) {
+    ctx.throw(err);
+  }
+}

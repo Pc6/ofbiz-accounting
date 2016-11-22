@@ -80,3 +80,29 @@ export async function updatePerson(ctx, next) {
     ctx.throw(err);
   }
 }
+
+export async function findPersons(ctx, next) {
+  const url = getWSDL('findPersons');
+  const arg = soapCreator(Object.assign(ctx.query, {
+    'login.username': 'admin',
+    'login.password': 'ofbiz'
+  }));
+  try {
+    const client = await soap.createClient(url, {
+      wsdl_options: {
+        rejectUnauthorized: false,
+        requestCert: true,
+        agent: false
+      }
+    });
+    const result = await client.findPersons(arg, {
+      rejectUnauthorized: false,
+      requestCert: true,
+      agent: false
+    });
+    ctx.body = soapParser(result, ['persons']);
+    await next();
+  } catch (err) {
+    ctx.throw(err);
+  }
+}
