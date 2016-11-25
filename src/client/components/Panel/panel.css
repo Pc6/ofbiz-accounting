@@ -1,0 +1,12 @@
+.ant-panel {
+  width: 100%;
+  height: 80px;
+  border-bottom: 1px solid #a8a8a8;
+  padding: 8px 16px 8px 16px;
+}
+
+.ant-search-input {
+  width: 100px;
+  margin-right: 8px;
+  transition: display 1s;
+}

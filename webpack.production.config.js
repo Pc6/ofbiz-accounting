@@ -7,7 +7,7 @@ var path = require('path'),
 /* eslint-disable */
 
 module.exports = {
-  entry: path.join(__dirname, 'src/client/index.js'),
+  entry: path.join(__dirname, 'src/client/index.jsx'),
 
   output: {
     path: path.join(__dirname, 'static/dist'),

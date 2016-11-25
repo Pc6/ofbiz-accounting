@@ -8,7 +8,7 @@ var path = require('path'),
 module.exports = {
   devtool: 'eval-source-map',
 
-  entry: path.join(__dirname, 'src/client/index.js'),
+  entry: path.join(__dirname, 'src/client/index.jsx'),
 
   output: {
     path: path.join(__dirname, 'static/dist'),

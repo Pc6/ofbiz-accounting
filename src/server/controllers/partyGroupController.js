@@ -101,7 +101,6 @@ export async function findPartyGroups(ctx, next) {
       requestCert: true,
       agent: false
     });
-    console.log(result)
     ctx.body = soapParser(result, ['partyGroups']);
     await next();
   } catch (err) {
