@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 import Drawer from 'react-motion-drawer';
 import { Icon } from 'antd';
 import NavMenu from '../NavMenu';
@@ -8,9 +9,20 @@ class AppBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isDrawerOpen: false
+      isDrawerOpen: false,
+      current: '1'
     };
     this.drawerChange = this.drawerChange.bind(this);
+    this.onMenuItemClick = this.onMenuItemClick.bind(this);
+  }
+
+  onMenuItemClick(e) {
+    this.setState({
+      current: e.key,
+      isDrawerOpen: false
+    });
+    // console.log(e.item)
+    browserHistory.push(`/${e.key}`);
   }
 
   drawerChange() {
@@ -31,7 +43,7 @@ class AppBar extends Component {
           width={240}
           onChange={open => this.setState({ isDrawerOpen: open })}
         >
-          <NavMenu />
+          <NavMenu current={this.state.current} onMenuItemClick={this.onMenuItemClick} />
         </Drawer>
       </div>
     );

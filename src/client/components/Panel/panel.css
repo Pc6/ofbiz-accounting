@@ -3,6 +3,7 @@
   height: 80px;
   border-bottom: 1px solid #a8a8a8;
   padding: 8px 16px 8px 16px;
+  background-color: #fff;
 }
 
 .ant-search-input {

@@ -9,7 +9,8 @@ module.exports = {
         "describe": false,
         "it": false,
         "expect": false,
-        "document": false
+        "document": false,
+        "window": false
     },
     "rules": {
     	"no-param-reassign": "off",
@@ -18,6 +19,7 @@ module.exports = {
         "quote-props": ["error", "consistent"],
         "dot-notation": "off",
         "no-prototype-builtins": "off",
-        "no-restricted-syntax": ["off", "FunctionExpression", "ForInStatement"]
+        "no-restricted-syntax": ["off", "FunctionExpression", "ForInStatement"],
+        "new-cap": ["error", { "capIsNew": false }]
     }
 };

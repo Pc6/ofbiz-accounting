@@ -53,6 +53,13 @@ module.exports = {
     colors: true,
     historyApiFallback: true,
     inline: true,
-    hot: true
+    hot: true,
+    port: 3200,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3100',
+        changeOrigin: true
+      }
+    }
   }
 };

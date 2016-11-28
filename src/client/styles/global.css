@@ -1,0 +1,18 @@
+/*全局css样式*/
+
+body {
+  background-color: #ececec;
+}
+
+.ant-listItem {
+  height: 64px;
+  border-bottom: 1px solid #ececec;
+  padding: 8px;
+  background-color: #fff;
+}
+
+.ant-listItem-sub {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
